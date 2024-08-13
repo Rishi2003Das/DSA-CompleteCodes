@@ -1,9 +1,9 @@
-##DSA-Complete
+#DSA-Complete
 Data Structures and Algorithms in Java
 
 
 
-#Welcome to the Data Structures and Algorithms (DSA) in Java repository! This repository is a collection of my solutions to various DSA problems, implemented in Java. The problems cover a wide range of topics, including Dynamic Programming, Tries, Arrays, HashMaps, Heaps, Stacks, Queues, and LinkedLists.
+Welcome to the Data Structures and Algorithms (DSA) in Java repository! This repository is a collection of my solutions to various DSA problems, implemented in Java. The problems cover a wide range of topics, including Dynamic Programming, Tries, Arrays, HashMaps, Heaps, Stacks, Queues, and LinkedLists.
 
 📚 Table of Contents
 Introduction
