@@ -73,9 +73,9 @@ class Solution {
                 if(dfs(it,vis,adj,parent)){
                     return true;
                 }
-            }
             else if(parent!=it)
             return true;
+            }
         }
         return false;
     }
