@@ -1,32 +1,36 @@
-package Inheritance;
-class Marks extends Student{
-    int AdmNo;
-    int marks;
-    String sub;
-    Marks(String n, int a, String b, int ad, int m, String s){
-        super(n,a,b);
-        AdmNo=ad;
-        marks=m;
-        sub=s;
-    }
-    char grade(){
-        if(marks>=80)
-        return 'A';
-        else if(marks<80 && marks>=50)
-        return 'B';
-        else
-        return 'C';
-    }
-    void display(){
-        super.display();
-        System.out.println("Admission Number: "+AdmNo);
-        System.out.println("Marks: "+marks);
-        System.out.println("Subject: "+sub);
-        System.out.println("Grade Obtained: "+grade());
-    }
-    public static void main(String args[]){
-        Marks ob= new Marks("Rishi",18,"+B",44684,95,"Chemistry");
-        ob.grade();
-        ob.display();
-    }
+import java.util.*;
+class Marks{
+public static void main(String args[]){
+        int max,min;int n;
+        Scanner sc=new Scanner(System.in);
+        do{
+         System.out.println("Enter the number of students: ");
+         n=sc.nextInt();
+        }while(n<0 || n>100);
+    int a[] = new int[n];
+    min=max=a[0];
+     for(int i=0;i<n;i++){
+             System.out.println("Enter the array element: ");
+             a[i]=sc.nextInt();
+         }
+         int p=0;
+         int f=0;
+         int s=0;
+    for(int i=0;i<n;++i){
+if(a[i]>max)
+max=a[i];
+if(a[i]<min)
+min=a[i];
+if(a[i]>50)
+p++;
+else
+f++;
+s+=a[i];
+}
+System.out.println("The least marks is: "+ min );
+System.out.println("The highest marks is: "+ max );
+System.out.println("The number of students passed are: "+ p);
+System.out.println("The number of students failed are: "+ f);
+System.out.println("The average marks of the students :"+ (s/n));
+}
 }

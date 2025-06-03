@@ -1,4 +1,3 @@
-//Magic Number
 import java.util.*;
 class Magic{
     private int n;

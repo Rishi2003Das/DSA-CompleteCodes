@@ -1,16 +1,18 @@
-//The sorting technique for insertion sort
 import java.util.*;
-class InsertionSort{
-    void insertionSort(int arr[]){
-        for(int i=1;i<arr.length;i++){int j;
-            int c=arr[i];
-            for(j=i-1;j>=0;j--){
-                if(arr[j]>c)
-                arr[j+1]=arr[j];
-        }
-        arr[j+1]=c;
-    }
-    }
+class SortArray{
+    void bubbleSort(int[]arr) {  
+        int n = arr.length;  
+        int temp = 0;  
+         for(int i=0; i < n; i++){  
+                 for(int j=1; j < (n-i); j++){  
+                          if(arr[j-1] > arr[j]){  
+                                 temp = arr[j-1];  //Swaping
+                                 arr[j-1] = arr[j];  
+                                 arr[j] = temp;  
+                         }  
+                 }  
+         }  
+    }  
     void display(int arr[]){
         for(int i=0;i<arr.length;i++)
         System.out.print(arr[i]+"   ");
@@ -25,11 +27,11 @@ class InsertionSort{
             System.out.println("Enter the array element: ");
             arr[i]=sc.nextInt();
         }  
-            InsertionSort ob=new InsertionSort();
+            SortArray ob=new SortArray();
             System.out.println("Unsorted array:");
             ob.display(arr);
-            ob.insertionSort(arr);
+            ob.bubbleSort(arr);
             System.out.println("Sorted Array:");
             ob.display(arr);
-    }  
+       }  
 }
