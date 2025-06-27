@@ -1,22 +1,25 @@
 class Solution {
     public boolean wordBreak(String s, List<String> wordDict) {
-        int n = s.length();
-        boolean[] dp = new boolean[n + 1];
-        dp[0] = true;
-        int max_len = 0;
-        for (String word : wordDict) {
-            max_len = Math.max(max_len, word.length());
-        }
+        HashSet<String> dict = new HashSet<>(wordDict); // Use HashSet for O(1) lookup
+        return func(0, s, dict, new Boolean[s.length()]); // Use memoization to optimize
+    }
 
-        for (int i = 1; i <= n; i++) {
-            for (int j = i - 1; j >= Math.max(i - max_len - 1, 0); j--) {
-                if (dp[j] && wordDict.contains(s.substring(j, i))) {
-                    dp[i] = true;
-                    break;
-                }
+    private boolean func(int start, String str, HashSet<String> dict, Boolean[] memo) {
+        if (start == str.length()) {
+            return true;
+        }
+        if (memo[start] != null) {
+            return memo[start];
+        }
+        for (int i = start + 1; i <= str.length(); i++) {
+            String check = str.substring(start, i);
+            if (dict.contains(check) && func(i, str, dict, memo)) {
+                memo[start] = true;
+                return true;
             }
         }
-
-        return dp[n];
+        memo[start] = false;
+        return false;
     }
 }
+
