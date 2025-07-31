@@ -23,7 +23,7 @@ class Solution{
 
         //intialisation with the source S
         dist[S]=0;
-        pq.add(new Pair(0,S);
+        pq.add(new Pair(0,S));
 
         while(pq.size() != 0){
             //Extract the Pair from the PriorityQueue
