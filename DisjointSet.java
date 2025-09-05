@@ -1,11 +1,14 @@
 import java.util.*;
-public class DisjointSet_Graph {
+class DisjointSet {
     List<Integer> parent=new ArrayList<>();
     List<Integer> rank= new ArrayList<>();
-    public DisjointSet_Graph(int n) {
+    List<Integer> size= new ArayList<>();
+
+    public DisjointSet(int n) {
         for (int i = 0; i < n; i++) {
             parent.add(i);
             rank.add(0);
+            size.add(1);
         }
     }
     public int findParent(int node){
@@ -30,6 +33,24 @@ public class DisjointSet_Graph {
         } else {
             parent.set(rootV, rootU);
             rank.set(rootU, rank.get(rootU) + 1);
+        }
+    }
+
+    public void unionBySize(int u, int v){
+        int rootU=findParent(u);
+        int rootV=findParent(v);
+
+        if(rootU == rootV)
+        return;
+
+        else if(size.get(rootU)<size.get(rootV)){
+            parent.set(rootU, rootV);
+            size.set(rootV,(size.get(rootU)+size.get(rootV)));
+        }
+
+        else{
+            parent.set(rootV,rootU);
+            size.set(rootU,(size.get(rootU)+size.get(rootV)));
         }
     }
 }
