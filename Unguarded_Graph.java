@@ -16,11 +16,11 @@ class Solution {
 
     public int countUnguarded(int m, int n, int[][] guards, int[][] walls) {
         int[][] vis = new int[m][n];
-        Queue<int[]> q = new LinkedList<>();
+        //Queue<int[]> q = new LinkedList<>();
         Map<String, Integer> mp = new HashMap<>();
 
         for (int[] g : guards) {
-            q.add(g);
+            //q.add(g);
             mp.put(g[0] + "," + g[1], 1);
             vis[g[0]][g[1]] = 1;
         }
