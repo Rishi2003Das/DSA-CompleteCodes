@@ -1,3 +1,51 @@
+//Optimised Solution
+
+class Solution {
+    public boolean canFinish(int numCourses, int[][] prerequisites) {
+        List<Integer>[] graph = new ArrayList[numCourses];
+        for (int i = 0; i < numCourses; i++) {
+            graph[i] = new ArrayList<>();
+        }
+
+        for (int[] p : prerequisites) {
+            graph[p[0]].add(p[1]);
+        }
+
+        boolean[] visited = new boolean[numCourses];
+        boolean[] onPath = new boolean[numCourses];
+
+        for (int i = 0; i < numCourses; i++) {
+            if (!visited[i]) {
+                if (hasCycle(i, graph, visited, onPath)) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    private boolean hasCycle(int course, List<Integer>[] graph,
+                             boolean[] visited, boolean[] onPath) {
+
+        if (onPath[course]) return true;
+        if (visited[course]) return false;
+
+        visited[course] = true;
+        onPath[course] = true;
+
+        for (int prereq : graph[course]) {
+            if (hasCycle(prereq, graph, visited, onPath)) {
+                return true;
+            }
+        }
+
+        onPath[course] = false;
+        return false;
+    }
+}
+
+
+//Brute Force Solution
 class Solution {
     public void cal_Indegree(List<List<Integer>> adj, int[] indegree) {
         for (int u = 0; u < adj.size(); u++) {
