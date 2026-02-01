@@ -1,4 +1,4 @@
-//TopoSort or Kahn's Algorithm
+//TopoSort or Kahn's Algorithm for Directed Acyclic Graph
 class Solution {
     public int[] topoSort(int V, List<List<Integer>> adj) {
     int vis[]=new int[V];
