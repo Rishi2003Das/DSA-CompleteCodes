@@ -1,4 +1,6 @@
 //Djikstra's Algorithm with Priority Queue method
+//Source is mutable according to this code
+//If we had started with dist[0] and pq.add(new Pair(0,0)), then the source would have been fixed.
 class Pair{
     private int distance;
     private int node;
