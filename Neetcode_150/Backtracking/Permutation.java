@@ -36,4 +36,28 @@ private void backtrack(List<List<Integer>> list, List<Integer> ds, int[] nums){
   }
 }
 }
-      
+
+//With Duplication
+class Solution {
+    public List<List<Integer>> permuteUnique(int[] nums) {
+        List<List<Integer>> list = new ArrayList<>();
+        Arrays.sort(nums);
+        boolean[] used=new boolean[nums.length];
+        backtrack(list, used, new ArrayList<>(), nums);
+            return list;
+    }
+    private void backtrack(List<List<Integer>> list, boolean[] used, List<Integer> ds, int[] nums){
+        if(nums.length==ds.size()){
+            list.add(new ArrayList<>(ds));
+            return;
+        }
+        for(int i=0;i<nums.length;i++){
+            if(i>0 && nums[i]==nums[i-1] && !used[i-1] || used[i]) continue;
+      ds.add(nums[i]);
+      used[i]=true;
+      backtrack(list,used,ds,nums);
+      ds.remove(ds.size()-1);
+      used[i]=false;
+    }
+    }
+}
