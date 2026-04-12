@@ -31,6 +31,84 @@ Total distance = 6
 
 */
 
+// Graph Approach 
+
+import java.util.*;
+
+public class Solution {
+
+    static class State {
+        int index, f1, f2, cost;
+
+        State(int index, int f1, int f2, int cost) {
+            this.index = index;
+            this.f1 = f1;
+            this.f2 = f2;
+            this.cost = cost;
+        }
+    }
+
+    public int minimumDistance(String word) {
+        int n = word.length();
+
+        // Precompute coordinates
+        int[][] pos = new int[26][2];
+        for (int i = 0; i < 26; i++) {
+            pos[i][0] = i / 6; // row
+            pos[i][1] = i % 6; // col
+        }
+
+        // Distance helper
+        java.util.function.BiFunction<Integer, Integer, Integer> dist = (a, b) -> {
+            if (a == 26) return 0; // unused finger
+            return Math.abs(pos[a][0] - pos[b][0]) +
+                   Math.abs(pos[a][1] - pos[b][1]);
+        };
+
+        // Min-heap (Dijkstra)
+        PriorityQueue<State> pq = new PriorityQueue<>(Comparator.comparingInt(s -> s.cost));
+
+        // Distance map: key = (index, f1, f2)
+        Map<String, Integer> best = new HashMap<>();
+
+        pq.offer(new State(0, 26, 26, 0)); // both fingers unused
+
+        while (!pq.isEmpty()) {
+            State cur = pq.poll();
+
+            String key = cur.index + "," + cur.f1 + "," + cur.f2;
+
+            if (best.containsKey(key) && best.get(key) < cur.cost) continue;
+
+            if (cur.index == n) {
+                return cur.cost; // reached end
+            }
+
+            int target = word.charAt(cur.index) - 'A';
+
+            // Option 1: move finger 1
+            int cost1 = cur.cost + dist.apply(cur.f1, target);
+            String key1 = (cur.index + 1) + "," + target + "," + cur.f2;
+
+            if (!best.containsKey(key1) || best.get(key1) > cost1) {
+                best.put(key1, cost1);
+                pq.offer(new State(cur.index + 1, target, cur.f2, cost1));
+            }
+
+            // Option 2: move finger 2
+            int cost2 = cur.cost + dist.apply(cur.f2, target);
+            String key2 = (cur.index + 1) + "," + cur.f1 + "," + target;
+
+            if (!best.containsKey(key2) || best.get(key2) > cost2) {
+                best.put(key2, cost2);
+                pq.offer(new State(cur.index + 1, cur.f1, target, cost2));
+            }
+        }
+
+        return -1; // should never reach
+    }
+}
+//3D- DP Approach
 class Solution {
 
     private int getDistance(int p, int q) {
