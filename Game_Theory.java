@@ -44,21 +44,38 @@ Assume Alice and Bob play optimally.
 Return "Alice" if Alice will win, "Bob" if Bob will win, or "Tie" if they will end the game with the same score.
 */
 class Solution {
-    static final String[] s = { "Bob", "Tie", "Alice" };
+    public String stoneGameIII(int[] stoneValue) {
+        int s1 = 0;
+        int s2 = 0;
+        int s3 = 0;
+        int total = 0;
 
-    public String stoneGameIII(int[] A) {
-        int n = A.length;
-        int[] dp = { 0, 0, 0, 0 };
+        for (int i = stoneValue.length - 1; i >= 0; i--) {
+            total += stoneValue[i];
 
-        for (int i = n - 1; i >= 0; i--) {
-            dp[i & 3] = Integer.MIN_VALUE;
-            int sum = 0;
+            int current = total - Math.min(
+                s1,
+                Math.min(s2, s3)
+            );
 
-            for (int j = 1; j <= 3 && i + j <= n; j++) {
-                sum += A[i + j - 1];
-                dp[i & 3] = Math.max(dp[i & 3], sum - dp[(i + j) & 3]);
-            }
+            s3 = s2;
+            s2 = s1;
+            s1 = current;
         }
+
+        int bob = total - s1;
+
+        if (s1 > bob) {
+            return "Alice";
+        }
+
+        if (s1 < bob) {
+            return "Bob";
+        }
+
+        return "Tie";
+    }
+}
 
         return s[Integer.signum(dp[0]) + 1];
     }
