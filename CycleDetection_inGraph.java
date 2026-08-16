@@ -11,8 +11,8 @@ class Pair{
 class Solution {
     // Function to detect cycle in an undirected graph.
     public boolean isCycle(ArrayList<ArrayList<Integer>> adj) {
-        int c=0;
-        for(ArrayList<Integer> sublist : adj){
+        int c=0;// To store the count of the number of nodes in the graph
+        for(ArrayList<Integer> it : adj){// counting the number of Nodes
                 c++;
         }
         boolean vis[]= new boolean[c+1];
@@ -24,7 +24,7 @@ class Solution {
     
     public boolean check(int src,ArrayList<ArrayList<Integer>> adj, boolean vis[]){
         vis[src]=true;
-        Queue<Pair> q=new LinkedList<>();
+        Queue<Pair> q=new LinkedList<>();//Declaring the queue to list the nodes
         
         q.add(new Pair(src,-1));
         while(!q.isEmpty()){
