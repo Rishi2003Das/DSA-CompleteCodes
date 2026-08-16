@@ -37,7 +37,7 @@ class Solution {
                     vis[i]=true;
                     q.add(new Pair(i,pres));
                 }
-                else if(parent != i){
+                else if(parent != i){//Cycle detected as both are visited and not equal but, from the same node
                     return true;
                 }
             }
