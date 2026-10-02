@@ -14,7 +14,7 @@
  * }
  */
 
-//Approach 1 - Level Order Traversal using Queue , standart BFS
+//Approach 1 - Level Order Traversal using Queue , standard BFS
 class Solution {
     public List<List<Integer>> levelOrder(TreeNode root) {
 
